@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
+require('dotenv').config({ path: './.env' });
 
 const path = require('path');
 
@@ -37,6 +39,14 @@ module.exports = function build(env, arg) {
           use: { loader: 'html-loader' },
         },
         {
+          test: /\.(png|svg|jpe?g|bin|gif|glb|gltf|dds)$/,
+          loader: 'file-loader',
+          options: {
+            esModule: false,
+          },
+          type: 'javascript/auto',
+        },
+        {
           test: /\.(s*)css$/,
           include: path.resolve(__dirname, 'src'),
           exclude: /node_modules/,
@@ -52,6 +62,9 @@ module.exports = function build(env, arg) {
       new HtmlWebpackPlugin({
         template: './public/index.html',
         filename: 'index.html',
+      }),
+      new webpack.DefinePlugin({
+        'process.env': JSON.stringify(process.env),
       }),
     ],
     resolve: {

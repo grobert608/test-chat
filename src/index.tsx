@@ -1,7 +1,17 @@
-import { createRoot } from 'react-dom/client';
-import App from './App';
+import ReactDOM from "react-dom/client";
+import { RootStoreContext } from "./hooks/useStores";
+import "./index.css";
+import { Root } from "./root";
+import { RootStore } from "./stores/rootStore";
 
-const container = document.getElementById('app');
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const root = createRoot(container!);
+function App() {
+  return (
+    <RootStoreContext.Provider value={new RootStore()}>
+      <Root />
+    </RootStoreContext.Provider>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+
 root.render(<App />);
