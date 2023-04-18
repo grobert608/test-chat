@@ -12,8 +12,7 @@
     "lint": "eslint src --color",
     "lint-staged": "lint-staged --config lint-staged.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.js",
-    "typescript": "tsc --project tsconfig.json --noEmit",
-    "prepare": "is-ci || husky install"
+    "typescript": "tsc --project tsconfig.json --noEmit"
   },
   "keywords": [
     "github"
